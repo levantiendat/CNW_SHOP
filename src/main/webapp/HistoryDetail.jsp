@@ -42,28 +42,31 @@
 								</li>
 							</ul>
 						</nav>
-						<table border="1">
-							<tr>
-								<th>Mã hàng hóa/hóa đơn</th>
-								<th>Mã hàng hóa</th>
-								<th>Số tiền thanh toán</th>
-								<th></th>
-							</tr>
-							<% ArrayList<HistoryDetail> list = (ArrayList<HistoryDetail>) request.getAttribute("list");
-									for(int i = 0;i<list.size();i++){ %>
-										<tr>
-											<td>
-												<%=list.get(i).getID() %>
-											</td>
-											<td>
-												<%=list.get(i).getID_Product() %>
-											</td>
-											<td>
-												<%=list.get(i).getPrice() %>
-											</td>
-										</tr>
-										<%} %>
-						</table>
+						<div class="content w-100 bg-secondary p-5 vh-100" style="overflow-y:auto;">
+							<table class="table table-dark table-striped w-100 mt-2">
+								<tr>
+									<th>Mã hàng hóa/hóa đơn</th>
+									<th>Mã hàng hóa</th>
+									<th>Số tiền thanh toán</th>
+									<th></th>
+								</tr>
+								<% ArrayList<HistoryDetail> list = (ArrayList<HistoryDetail>)
+										request.getAttribute("list");
+										for(int i = 0;i<list.size();i++){ %>
+											<tr>
+												<td>
+													<%=list.get(i).getID() %>
+												</td>
+												<td>
+													<%=list.get(i).getID_Product() %>
+												</td>
+												<td>
+													<%=list.get(i).getPrice() %>
+												</td>
+											</tr>
+											<%} %>
+							</table>
+						</div>
 					</div>
 				</div>
 			</body>
