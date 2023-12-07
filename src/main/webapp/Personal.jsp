@@ -58,7 +58,7 @@
 													class="LoginForm d-flex justify-content-center align-items-center flex-column"
 													style="font-size: 20px;" method="post">
 													<div
-														class="d-flex justify-content-between align-items-center mb-5 border-bottom border-dark w-100">
+														class="d-flex justify-content-between align-items-center mb-5 border-bottom border-light w-100">
 														<label for="Username" class="form-label text-light"
 															style="font-weight:bold; margin:0;">Username</label>
 														<input type="text" class="form-control bg-secondary text-light"
@@ -70,7 +70,7 @@
 														<div id="usernameHelp" class="form-text"></div>
 													</div>
 													<div
-														class="d-flex justify-content-between align-items-center mb-5 border-bottom border-dark w-100">
+														class="d-flex justify-content-between align-items-center mb-5 border-bottom border-light w-100">
 														<label for="Name" class="form-label me-auto text-light"
 															style="font-weight:bold; margin:0;">Name</label>
 														<input type="text" class="form-control bg-secondary text-light"
@@ -81,7 +81,7 @@
 														<div id="nameHelp" class="form-text"></div>
 													</div>
 													<div
-														class="d-flex justify-content-between align-items-center mb-5 border-bottom border-dark w-100">
+														class="d-flex justify-content-between align-items-center mb-5 border-bottom border-light w-100">
 														<label for="Gmail" class="form-label flex-grow-1 text-light"
 															style="font-weight:bold; margin:0;">Gmail</label>
 														<input type="text"

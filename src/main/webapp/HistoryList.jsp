@@ -62,7 +62,7 @@
 												<td>
 													<%=list.get(i).getBill() %>
 												</td>
-												<td><a
+												<td><a class="btn btn-primary"
 														href="HistoryServlet?detail=1&ID=<%=list.get(i).getID() %>">DETAIL</a>
 												</td>
 											</tr>
