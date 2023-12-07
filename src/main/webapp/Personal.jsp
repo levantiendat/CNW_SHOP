@@ -16,11 +16,12 @@
 						<link rel="stylesheet"
 							href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 						<title>Personal List</title>
+
 					</head>
 
 					<body>
 						<div class="container-fluid">
-							<div class="wrapper w-100 ">
+							<div class="wrapper w-100 overflow-hidden">
 								<nav class="navbar navbar-expand-lg bg-dark navbar-dark d-flex justify-content-center"
 									style="font-size: 22px; font-weight: bold;">
 									<ul class="navbar-nav"
@@ -46,12 +47,11 @@
 										</li>
 									</ul>
 								</nav>
-								<div class="row">
-
+								<div class="row bg-secondary vh-100">
 									<div class="col col-3">
 									</div>
-									<div class="col col-6 d-flex justify-content-center align-items-center flex-column">
-										<h1 class="text-center mb-5 mt-5">Personal detail</h1>
+									<div class="col col-6 d-flex justify-content-start align-items-center flex-column">
+										<h1 class="text-center mb-5 mt-5 text-light">Personal detail</h1>
 										<div style="width: 80%; margin-top:20px;">
 											<% Account acc=(Account)request.getAttribute("account"); %>
 												<form action="PersonalServlet"
@@ -59,10 +59,11 @@
 													style="font-size: 20px;" method="post">
 													<div
 														class="d-flex justify-content-between align-items-center mb-5 border-bottom border-dark w-100">
-														<label for="Username" class="form-label"
+														<label for="Username" class="form-label text-light"
 															style="font-weight:bold; margin:0;">Username</label>
-														<input type="text" class="form-control" id="Username"
-															name="Username" aria-describedby="usernameHelp" readonly
+														<input type="text" class="form-control bg-secondary text-light"
+															id="Username" name="Username"
+															aria-describedby="usernameHelp" readonly
 															value="<%=acc.getUsername()%>" style="border: none;
 					outline: none;
 					font-size: 20px; text-align:right;">
@@ -70,21 +71,22 @@
 													</div>
 													<div
 														class="d-flex justify-content-between align-items-center mb-5 border-bottom border-dark w-100">
-														<label for="Name" class="form-label me-auto"
+														<label for="Name" class="form-label me-auto text-light"
 															style="font-weight:bold; margin:0;">Name</label>
-														<input type="text" class="form-control" id="Name" name="Name"
-															aria-describedby="nameHelp" value="<%=acc.getName()%>"
-															style="border: none;
+														<input type="text" class="form-control bg-secondary text-light"
+															id="Name" name="Name" aria-describedby="nameHelp"
+															value="<%=acc.getName()%>" style="border: none;
 					outline: none;
 					font-size: 20px; text-align:right;">
 														<div id="nameHelp" class="form-text"></div>
 													</div>
 													<div
 														class="d-flex justify-content-between align-items-center mb-5 border-bottom border-dark w-100">
-														<label for="Gmail" class="form-label flex-grow-1"
+														<label for="Gmail" class="form-label flex-grow-1 text-light"
 															style="font-weight:bold; margin:0;">Gmail</label>
-														<input type="text" class="form-control flex-grow-1" id="Gmail"
-															name="Gmail" aria-describedby="GmailHelp"
+														<input type="text"
+															class="form-control flex-grow-1 bg-secondary text-light"
+															id="Gmail" name="Gmail" aria-describedby="GmailHelp"
 															value="<%=acc.getEmail()%>" style="border: none;
 					outline: none;
 					font-size: 20px; text-align:right;">
