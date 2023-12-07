@@ -41,6 +41,9 @@
 											<a class="nav-link" href="HistoryServlet?detail=0">Lịch sử mua
 												hàng</a>
 										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="">Đăng xuất</a>
+										</li>
 									</ul>
 								</nav>
 								<div class="row">
