@@ -42,7 +42,8 @@ public class SigninServlet extends HttpServlet {
 			if(account != null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("username", account.getUsername());
-				destination = "/welcome.jsp";
+				request.setAttribute("account", account);
+				destination = "/Personal.jsp";
 				RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
 				rd.forward(request, response);
 			} else {
