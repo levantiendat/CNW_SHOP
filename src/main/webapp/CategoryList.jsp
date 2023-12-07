@@ -15,6 +15,12 @@
 			</head>
 
 			<body>
+				<style>
+					table td:nth-child(3) {
+						width: 20%;
+						text-align: center;
+					}
+				</style>
 				<div class="container-fluid">
 					<div class="wrapper w-100">
 						<nav class="navbar navbar-expand-lg bg-dark navbar-dark d-flex justify-content-center"
@@ -42,26 +48,30 @@
 								</li>
 							</ul>
 						</nav>
-						<table border="1">
-							<tr>
-								<th>Mã loại hàng</th>
-								<th>Loại hàng</th>
-								<th></th>
-							</tr>
-							<% ArrayList<Category> list = (ArrayList<Category>) request.getAttribute("list");
-									for(int i = 0;i<list.size();i++){ %>
-										<tr>
-											<td>
-												<%=list.get(i).getID() %>
-											</td>
-											<td>
-												<%=list.get(i).getName() %>
-											</td>
-											<td><a href="ProductServlet?category=<%=list.get(i).getID() %>">Xem danh
-													sách</a></td>
-										</tr>
-										<%} %>
-						</table>
+						<div class="content w-100 bg-secondary p-5 vh-100" style="overflow-y:auto;">
+							<table class="table table-dark table-striped w-100 mt-2">
+								<tr>
+									<th>Mã loại hàng</th>
+									<th>Loại hàng</th>
+									<th></th>
+								</tr>
+								<% ArrayList<Category> list = (ArrayList<Category>) request.getAttribute("list");
+										for(int i = 0;i<list.size();i++){ %>
+											<tr>
+												<td>
+													<%=list.get(i).getID() %>
+												</td>
+												<td>
+													<%=list.get(i).getName() %>
+												</td>
+												<td><a class="btn btn-primary"
+														href="ProductServlet?category=<%=list.get(i).getID() %>">Xem
+														danh
+														sách</a></td>
+											</tr>
+											<%} %>
+							</table>
+						</div>
 					</div>
 				</div>
 			</body>
