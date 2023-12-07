@@ -42,33 +42,33 @@
 								</li>
 							</ul>
 						</nav>
-						<table border="1">
-							<tr>
-								<th>Mã thanh toán</th>
-								<th>Ngày mua hàng</th>
-								<th>Số tiền thanh toán</th>
-								<th></th>
-							</tr>
-
-
-							<% ArrayList<History> list = (ArrayList<History>) request.getAttribute("list");
-									for(int i = 0;i<list.size();i++){ %>
-										<tr>
-											<td>
-												<%=list.get(i).getID() %>
-											</td>
-											<td>
-												<%=list.get(i).getDateOfBill() %>
-											</td>
-											<td>
-												<%=list.get(i).getBill() %>
-											</td>
-											<td><a
-													href="HistoryServlet?detail=1&ID=<%=list.get(i).getID() %>">DETAIL</a>
-											</td>
-										</tr>
-										<%} %>
-						</table>
+						<div class="content w-100 bg-secondary p-5 vh-100" style="overflow-y:auto;">
+							<table class="table table-dark table-striped w-100 mt-2">
+								<tr>
+									<th>Mã thanh toán</th>
+									<th>Ngày mua hàng</th>
+									<th>Số tiền thanh toán</th>
+									<th></th>
+								</tr>
+								<% ArrayList<History> list = (ArrayList<History>) request.getAttribute("list");
+										for(int i = 0;i<list.size();i++){ %>
+											<tr>
+												<td>
+													<%=list.get(i).getID() %>
+												</td>
+												<td>
+													<%=list.get(i).getDateOfBill() %>
+												</td>
+												<td>
+													<%=list.get(i).getBill() %>
+												</td>
+												<td><a
+														href="HistoryServlet?detail=1&ID=<%=list.get(i).getID() %>">DETAIL</a>
+												</td>
+											</tr>
+											<%} %>
+							</table>
+						</div>
 					</div>
 				</div>
 			</body>
