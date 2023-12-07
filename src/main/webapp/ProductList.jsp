@@ -42,45 +42,49 @@
 								</li>
 							</ul>
 						</nav>
-						<table border="1">
-							<tr>
-								<th>Mã mặt hàng</th>
-								<th>Mã Loại hàng</th>
-								<th>Tên hàng hóa</th>
-								<th>Giá niêm yết</th>
-								<th>Mức giảm giá</th>
-								<th>Sau khi giảm</th>
-								<th></th>
-							</tr>
+						<div class="content w-100 bg-secondary p-5 vh-100" style="overflow-y:auto;">
+							<table class="table table-dark table-striped w-100 mt-2">
+								<tr>
+									<th>Mã mặt hàng</th>
+									<th>Mã Loại hàng</th>
+									<th>Tên hàng hóa</th>
+									<th>Giá niêm yết</th>
+									<th>Mức giảm giá</th>
+									<th>Sau khi giảm</th>
+									<th></th>
+								</tr>
 
 
-							<% ArrayList<Product> list = (ArrayList<Product>) request.getAttribute("list");
-									for(int i = 0;i<list.size();i++){ double promotePercent=(double)-
-										list.get(i).getPromotion()/list.get(i).getPrice()*100; String
-										formattedPromotion=String.format("%.1f%%", promotePercent); %>
-										<tr>
-											<td>
-												<%=list.get(i).getID() %>
-											</td>
-											<td>
-												<%=list.get(i).getID_Category() %>
-											</td>
-											<td>
-												<%=list.get(i).getName() %>
-											</td>
-											<td>
-												<%=list.get(i).getPrice() %>
-											</td>
-											<td>
-												<%=formattedPromotion %>
-											</td>
-											<td>
-												<%=list.get(i).getPrice() + list.get(i).getPromotion() %>
-											</td>
-											<td><a href="CartServlet?add=1&ID=<%=list.get(i).getID() %>">Thêm</a></td>
-										</tr>
-										<%} %>
-						</table>
+								<% ArrayList<Product> list = (ArrayList<Product>) request.getAttribute("list");
+										for(int i = 0;i<list.size();i++){ double promotePercent=(double)-
+											list.get(i).getPromotion()/list.get(i).getPrice()*100; String
+											formattedPromotion=String.format("%.1f%%", promotePercent); %>
+											<tr>
+												<td>
+													<%=list.get(i).getID() %>
+												</td>
+												<td>
+													<%=list.get(i).getID_Category() %>
+												</td>
+												<td>
+													<%=list.get(i).getName() %>
+												</td>
+												<td>
+													<%=list.get(i).getPrice() %>
+												</td>
+												<td>
+													<%=formattedPromotion %>
+												</td>
+												<td>
+													<%=list.get(i).getPrice() + list.get(i).getPromotion() %>
+												</td>
+												<td><a class="btn btn-primary"
+														href="CartServlet?add=1&ID=<%=list.get(i).getID() %>">Thêm</a>
+												</td>
+											</tr>
+											<%} %>
+							</table>
+						</div>
 					</div>
 				</div>
 			</body>
