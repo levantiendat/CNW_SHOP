@@ -14,7 +14,7 @@
 				<title>Category list</title>
 			</head>
 
-			<body>
+			<body style="background-color: #F8F8FF;">
 				<style>
 					table td:nth-child(3) {
 						width: 20%;
