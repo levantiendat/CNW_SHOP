@@ -84,12 +84,12 @@
 												</td>
 												<td>
 													<a class="btn btn-primary"
-														href="CartServlet?method=update&ID=<%=list.get(i).getID() %>">Sửa</a>
+														href="ProductServlet?method=update&ID=<%=list.get(i).getID() %>">Sửa</a>
 
 												</td>
 												<td>
 													<a class="btn btn-primary"
-														href="CartServlet?method=del&ID=<%=list.get(i).getID() %>">Xóa</a>
+														href="ProductServlet?method=del&ID=<%=list.get(i).getID() %>">Xóa</a>
 												</td>
 											</tr>
 											<%} %>
