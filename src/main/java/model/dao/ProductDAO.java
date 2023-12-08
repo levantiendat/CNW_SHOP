@@ -92,7 +92,7 @@ public class ProductDAO {
 			Class.forName("com.mysql.jdbc.Driver");
 			String url="jdbc:mysql://127.0.0.1:3306/kinhdoanh";
 			Connection con=DriverManager.getConnection(url,"root","");
-			Statement stmt =con.createStatement();
+			Statement stmt = con.createStatement();
 			String query = String.format("Update product Set ID_Category = '%s', Name = '%s', Price = '%d', Promotion = '%d'"
 					+ " where ID = '%s'", ID_Category, Name, Price, Promotion, ID);
 			int res = stmt.executeUpdate(query);
