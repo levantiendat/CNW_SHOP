@@ -110,18 +110,19 @@
                             const UpdateButton = document.getElementById('UpdateProduct');
 
                             UpdateButton.addEventListener('click', (e) => {
-                                const re = new RegExp('^[0-9]+$');
-                                if(!re.test(Price.value) && !re.test(Promotion.value)){
-                                	PriceHelp.innerHTML = 'Price must be a number';
-                                	PromotionHelp.innerHTML = 'Promotion must be a number';
-                                	e.preventDefault(); // Ngăn không cho form submit nếu có lỗi
+                                const PriceRe = new RegExp('^[0-9]+$');
+                                const ProRe = new RegExp('^-?[0-9]+$');
+                                if (!PriceRe.test(Price.value) && !ProRe.test(Promotion.value)) {
+                                    PriceHelp.innerHTML = 'Price must be a number';
+                                    PromotionHelp.innerHTML = 'Promotion must be a number';
+                                    e.preventDefault(); // Ngăn không cho form submit nếu có lỗi
                                 }
-                                else if(!re.test(Price.value)){
-                                	PriceHelp.innerHTML = 'Price must be a number';
-                                	PromotionHelp.innerHTML = 'Promotion must be a number';
-                                	e.preventDefault(); // Ngăn không cho form submit nếu có lỗi
+                                else if (!PriceRe.test(Price.value)) {
+                                    PriceHelp.innerHTML = 'Price must be a number';
+                                    PromotionHelp.innerHTML = 'Promotion must be a number';
+                                    e.preventDefault(); // Ngăn không cho form submit nếu có lỗi
                                 }
-                                else if (!re.test(Promotion.value)) {
+                                else if (!ProRe.test(Promotion.value)) {
                                     PromotionHelp.innerHTML = 'Promotion must be a number';
                                     PriceHelp.innerHTML = '';
                                     e.preventDefault(); // Ngăn không cho form submit nếu có lỗi
