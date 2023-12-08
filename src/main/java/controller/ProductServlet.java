@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.bean.Product;
 import model.bo.ProductBO;
+import model.bean.Category;
+import model.bo.CategoryBO;
 
 @WebServlet("/ProductServlet")
 public class ProductServlet extends HttpServlet {
@@ -25,6 +27,8 @@ public class ProductServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String category = request.getParameter("category");
+		String method = request.getParameter("method");
+		
 		if((category != null && !category.isEmpty()) && !"all".equals(category)) {
 			ProductBO bo = new ProductBO();
 			ArrayList<Product> list = new ArrayList<Product>();
@@ -43,6 +47,20 @@ public class ProductServlet extends HttpServlet {
 			if(list !=null) {
 				request.setAttribute("list", list);
 				String destination = "/ProductList.jsp";
+				RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
+				rd.forward(request, response);
+			}
+		}
+		if("update".equals(method)) {
+			String IDProduct = request.getParameter("ID");
+			ProductBO bo = new ProductBO();
+			CategoryBO cgbo = new CategoryBO();
+			ArrayList<Category> cglist = cgbo.getCategoryList();
+			Product pd = bo.getProduct(IDProduct);
+			if(pd != null && cglist != null) {
+				request.setAttribute("product", pd);
+				request.setAttribute("CategoryList", cglist);
+				String destination = "/form_updateProduct.jsp";
 				RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
 				rd.forward(request, response);
 			}
