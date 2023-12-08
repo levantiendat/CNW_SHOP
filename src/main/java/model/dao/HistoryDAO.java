@@ -127,4 +127,21 @@ public class HistoryDAO {
 			return null;
 		}
 	}
+	public boolean DeleteHistoryDetailByIDProduct (String IDProduct) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			String url="jdbc:mysql://127.0.0.1:3306/kinhdoanh";
+			Connection con=DriverManager.getConnection(url,"root","");
+			Statement stmt = con.createStatement();
+			String query = String.format("Delete from historydetail where ID_Product = '%s'", IDProduct);
+			int res = stmt.executeUpdate(query);
+			stmt.close();
+			con.close();
+			return true;
+		}
+		catch (Exception e) {
+			System.out.print("Remove HistoryDetail failed, error: " + e.getLocalizedMessage());
+			return false;
+		}
+	}
 }
