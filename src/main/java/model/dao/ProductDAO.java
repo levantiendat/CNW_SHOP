@@ -87,4 +87,26 @@ public class ProductDAO {
 			return null;
 		}
 	}
+	public boolean UpdateProduct(String ID, String ID_Category, String Name, int Price, int Promotion) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			String url="jdbc:mysql://127.0.0.1:3306/kinhdoanh";
+			Connection con=DriverManager.getConnection(url,"root","");
+			Statement stmt =con.createStatement();
+			String query = String.format("Update product Set ID_Category = '%s', Name = '%s', Price = '%d', Promotion = '%d'"
+					+ " where ID = '%s'", ID_Category, Name, Price, Promotion, ID);
+			int res = stmt.executeUpdate(query);
+			stmt.close();
+			con.close();
+			if(res > 0) {
+				return true;
+			}
+			return false;
+		}
+		catch (Exception e) {
+			System.out.print("Update product failed, error: " + e.getLocalizedMessage());
+			return false;
+		}
+		
+	}
 }
