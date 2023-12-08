@@ -10,4 +10,8 @@ public class CategoryBO {
 		CategoryDAO dao = new CategoryDAO();
 		return dao.getCategoryList();
 	}
+	public ArrayList<String> GetAllCategoryName(){
+		CategoryDAO dao = new CategoryDAO();
+		return dao.GetAllCategoryName();
+	}
 }

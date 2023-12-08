@@ -33,4 +33,24 @@ public class CategoryDAO {
 			return null;
 		}
 	}
+	public ArrayList<String> GetAllCategoryName(){
+		try {
+			ArrayList<String> list = new ArrayList<String>();
+			Class.forName("com.mysql.jdbc.Driver");
+			String url="jdbc:mysql://127.0.0.1:3306/kinhdoanh";
+			Connection con=DriverManager.getConnection(url,"root","");
+			Statement stmt =con.createStatement();
+			String query=String.format("SELECT Name FROM category");
+	        ResultSet res=stmt.executeQuery(query);
+	        while(res.next()) {
+	        	list.add(res.getString("Name"));
+	        }
+	        return list;
+		}
+		catch (Exception e) {
+			System.out.print(e.getLocalizedMessage());
+			return null;
+		}
+		
+	}
 }

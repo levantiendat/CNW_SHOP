@@ -14,4 +14,12 @@ public class ProductBO {
 		ProductDAO dao = new ProductDAO();
 		return dao.getProductByCategory(category);
 	}
+	public Product getProduct(String ID) {
+		ProductDAO dao = new ProductDAO();
+		return dao.getProduct(ID);
+	}
+	public boolean UpdateProduct(String ID, String ID_Category, String Name, int Price, int Promotion) {
+		ProductDAO dao = new ProductDAO();
+		return dao.UpdateProduct(ID, ID_Category, Name, Price, Promotion);
+	}
 }
