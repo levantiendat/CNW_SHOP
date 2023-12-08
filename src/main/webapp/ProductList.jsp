@@ -42,9 +42,10 @@
 								</li>
 							</ul>
 						</nav>
+
 						<div class="content w-100 bg-secondary p-5 vh-100" style="overflow-y:auto;">
 							<div class="d-flex justify-content-start">
-								<a class="btn btn-primary" href="">Thêm</a>
+								<a class="btn btn-primary" href="ProductServlet?method=add">Thêm</a>
 							</div>
 							<table class="table table-dark table-striped w-100 mt-2">
 								<tr>
@@ -54,6 +55,7 @@
 									<th>Giá niêm yết</th>
 									<th>Mức giảm giá</th>
 									<th>Sau khi giảm</th>
+									<th></th>
 									<th></th>
 									<th></th>
 								</tr>
@@ -83,6 +85,10 @@
 													<%=list.get(i).getPrice() + list.get(i).getPromotion() %>
 												</td>
 												<td>
+													<a class="btn btn-primary" href="CartServlet?add=1&ID=<%=list.get(i).getID() %>">Thêm
+														vào giỏ hàng</a>
+												</td>
+												<td>
 													<a class="btn btn-primary"
 														href="ProductServlet?method=update&ID=<%=list.get(i).getID() %>">Sửa</a>
 
@@ -97,6 +103,10 @@
 
 						</div>
 					</div>
+					<% String message=(String)request.getAttribute("message"); if(message==null) message="" ;%>
+						<script>
+							if ('<%=message %>' != "") alert('<%=message %>');
+						</script>
 			</body>
 
 			</html>

@@ -16,7 +16,7 @@
                                 src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
                             <link rel="stylesheet"
                                 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-                            <title>Update Product</title>
+                            <title>Add Product</title>
                         </head>
 
                         <body>
@@ -28,11 +28,10 @@
                                             <h1 class="text-center mb-5 mt-1">Update Product</h1>
                                             <% ArrayList<Category> cglist = (ArrayList<Category>
                                                     )request.getAttribute("CategoryList");
-                                                    Product pd = (Product)request.getAttribute("product");
                                                     String message = (String)request.getAttribute("message");
                                                     if(message == null) message = "";
                                                     %>
-                                                    <form action="ProductServlet" method="post" class="UpdateProduct">
+                                                    <form action="ProductServlet" method="post" class="AddProduct">
                                                         <div class="FormGroup mb-3">
                                                             <label for="Category" class="form-label"
                                                                 style="font-weight:bold">Category
@@ -41,18 +40,12 @@
                                                             <select class="form-select"
                                                                 aria-label="Default select example" id="Category"
                                                                 name="Category">
-                                                                <% for(int i=0; i < cglist.size(); i++){
-                                                                    if(!cglist.get(i).getID().equals(pd.getID_Category())){
-                                                                    %>
-                                                                    <option value="<%=cglist.get(i).getID()%>">
+                                                                <% for(int i=0; i < cglist.size(); i++){ %>
+                                                                    <option selected="selected"
+                                                                        value="<%=cglist.get(i).getID()%>">
                                                                         <%=cglist.get(i).getName()%>
                                                                     </option>
-                                                                    <%} else{ %>
-                                                                        <option selected="selected"
-                                                                            value="<%=cglist.get(i).getID()%>">
-                                                                            <%=cglist.get(i).getName()%>
-                                                                        </option>
-                                                                        <%}} %>
+                                                                    <%} %>
                                                             </select>
 
                                                         </div>
@@ -60,14 +53,13 @@
                                                             <label for="Name" class="form-label"
                                                                 style="font-weight:bold">Name</label>
                                                             <input type="text" class="form-control" id="Name"
-                                                                name="Name" value="<%=pd.getName()%>">
+                                                                name="Name">
                                                         </div>
                                                         <div class="FormGroup mb-3">
                                                             <label for="Price" class="form-label"
                                                                 style="font-weight:bold">Price</label>
                                                             <input type="text" class="form-control" id="Price"
-                                                                name="Price" value="<%=pd.getPrice()%>"
-                                                                aria-describedby="PriceHelp">
+                                                                name="Price" aria-describedby="PriceHelp">
                                                             <div id="PriceHelp" class="form-text">
                                                             </div>
                                                         </div>
@@ -75,8 +67,7 @@
                                                             <label for="Promotion" class="form-label"
                                                                 style="font-weight:bold">Promotion</label>
                                                             <input type="text" class="form-control" id="Promotion"
-                                                                name="Promotion" value=<%=pd.getPromotion() %>
-                                                            aria-describedby="PromotionHelp">
+                                                                name="Promotion" aria-describedby="PromotionHelp">
                                                             <div id="PromotionHelp" class="form-text">
                                                             </div>
                                                         </div>
@@ -84,13 +75,12 @@
                                                         <div
                                                             class="FormGroup w-100 d-flex justify-content-between align-items-center">
                                                             <button type="submit" class="btn btn-primary btn-lg"
-                                                                name='submit' value='UpdateProduct'
-                                                                id="UpdateProduct">Submit</button>
+                                                                name='submit' value='AddProduct'
+                                                                id="AddProduct">Submit</button>
                                                             <button type="submit" class="btn btn-primary btn-lg"
-                                                                name='submit'
-                                                                value='CancelUpdateProduct'>Cancel</button>
+                                                                name='submit' value='CancelAddProduct'>Cancel</button>
                                                         </div>
-                                                        <input type="hidden" name="ID" value="<%=pd.getID()%>">
+
                                                     </form>
                                         </div>
 
@@ -103,13 +93,12 @@
                         <script>
                             const Price = document.getElementById('Price');
                             const Promotion = document.getElementById('Promotion');
-                            const UpdateProduct = document.querySelector('.UpdateProduct');
+                            const AddProduct = document.querySelector('.AddProduct');
                             const PriceHelp = document.getElementById('PriceHelp');
                             const PromotionHelp = document.getElementById('PromotionHelp');
-                            // Chọn nút submit có tên là 'update'
-                            const UpdateButton = document.getElementById('UpdateProduct');
+                            const AddButton = document.getElementById('AddProduct');
 
-                            UpdateButton.addEventListener('click', (e) => {
+                            AddButton.addEventListener('click', (e) => {
                                 const PriceRe = new RegExp('^[0-9]+$');
                                 const ProRe = new RegExp('^-?[0-9]+$');
                                 if (!PriceRe.test(Price.value) && !ProRe.test(Promotion.value)) {

@@ -22,4 +22,16 @@ public class ProductBO {
 		ProductDAO dao = new ProductDAO();
 		return dao.UpdateProduct(ID, ID_Category, Name, Price, Promotion);
 	}
+	public boolean AddProduct(String ID, String ID_Category, String Name, int Price, int Promotion) {
+		ProductDAO dao = new ProductDAO();
+		return dao.AddProduct(ID, ID_Category, Name, Price, Promotion);
+	}
+	public ArrayList<String> GetAllProductID(){
+		ProductDAO dao = new ProductDAO();
+		return dao.GetAllProductID();
+	}
+	public boolean DeleteProduct(String ID) {
+		ProductDAO dao = new ProductDAO();
+		return dao.DeleteProduct(ID);
+	}
 }

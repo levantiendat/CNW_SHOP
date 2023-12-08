@@ -87,6 +87,25 @@ public class ProductDAO {
 			return null;
 		}
 	}
+	public boolean AddProduct(String ID, String ID_Category, String Name, int Price, int Promotion) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			String url="jdbc:mysql://127.0.0.1:3306/kinhdoanh";
+			Connection con=DriverManager.getConnection(url,"root","");
+			Statement stmt = con.createStatement();
+			String query = String.format("Insert into product values ('%s', '%s', '%s', '%d','%d')",
+					ID, ID_Category, Name, Price, Promotion);
+			System.out.print("Name: " + Name);
+			int res = stmt.executeUpdate(query);
+			stmt.close();
+			con.close();
+			return true;
+		}
+		catch (Exception e) {
+			System.out.print("Add product failed, error: " + e.getLocalizedMessage());
+			return false;
+		}
+	}
 	public boolean UpdateProduct(String ID, String ID_Category, String Name, int Price, int Promotion) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -96,17 +115,50 @@ public class ProductDAO {
 			String query = String.format("Update product Set ID_Category = '%s', Name = '%s', Price = '%d', Promotion = '%d'"
 					+ " where ID = '%s'", ID_Category, Name, Price, Promotion, ID);
 			int res = stmt.executeUpdate(query);
-			stmt.close();
-			con.close();
-			if(res > 0) {
-				return true;
-			}
-			return false;
+			return true;
 		}
 		catch (Exception e) {
 			System.out.print("Update product failed, error: " + e.getLocalizedMessage());
 			return false;
 		}
 		
+	}
+	public boolean DeleteProduct(String ID) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			String url="jdbc:mysql://127.0.0.1:3306/kinhdoanh";
+			Connection con=DriverManager.getConnection(url,"root","");
+			Statement stmt = con.createStatement();
+			String query = String.format("Delete from product where ID = '%s'", ID);
+			int res = stmt.executeUpdate(query);
+			stmt.close();
+			con.close();
+			return true;
+		}
+		catch (Exception e) {
+			System.out.print("Remove product failed, error: " + e.getLocalizedMessage());
+			return false;
+		}
+		
+	}
+	public ArrayList<String> GetAllProductID(){
+		try {
+			ArrayList<String> list = new ArrayList<String>();
+			Class.forName("com.mysql.jdbc.Driver");
+			String url="jdbc:mysql://127.0.0.1:3306/kinhdoanh";
+			Connection con=DriverManager.getConnection(url,"root","");
+			Statement stmt = con.createStatement();
+			String query = "Select ID from product";
+			ResultSet res = stmt.executeQuery(query);
+			while(res.next()){
+	        	list.add(res.getString("ID"));
+	        }
+			stmt.close();
+            con.close();
+			return list;
+		}
+		catch (Exception e) {
+			return null;
+		}
 	}
 }

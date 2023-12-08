@@ -19,4 +19,8 @@ public class HistoryBO {
 		HistoryDAO dao = new HistoryDAO();
 		return dao.getHistoryDetail(ID);
 	}
+	public boolean DeleteHistoryDetailByIDProduct (String IDProduct) {
+		HistoryDAO dao = new HistoryDAO();
+		return dao.DeleteHistoryDetailByIDProduct(IDProduct);
+	}
 }
