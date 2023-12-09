@@ -31,9 +31,10 @@ public class SignupServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String destination = null;
 		try {
-			
+			request.setCharacterEncoding("UTF-8");
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
+			response.setContentType("text/html;charset=UTF-8");
 			String name = request.getParameter("name");
 			String email = request.getParameter("email");
 			

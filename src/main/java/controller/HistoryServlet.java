@@ -29,12 +29,18 @@ public class HistoryServlet extends HttpServlet {
 		String referer = request.getHeader("Referer");
 		HttpSession session = request.getSession();
 		String username = (String) session.getAttribute("username");
+		int roles = (int) session.getAttribute("roles");
 		String detail = (String) request.getParameter("detail");
 		System.out.println(detail);
 		if((detail != null && !detail.isEmpty()) && "0".equals(detail)) {
 			ArrayList<History> list = new ArrayList<History>();
 			HistoryBO bo = new HistoryBO();
-			list = bo.getList(username);
+			if(roles == 0) {
+				list = bo.getList(username);
+			} else {
+				list = bo.getAllList();
+			}
+			
 			if(list!=null) {
 				request.setAttribute("list", list);
 				String destination = "/HistoryList.jsp";

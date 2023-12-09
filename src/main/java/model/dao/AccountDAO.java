@@ -167,4 +167,33 @@ public class AccountDAO {
 			return null;
 		}
 	}
+	public ArrayList<Account> getAllUser(){
+		try {
+			ArrayList<Account> list = new ArrayList<Account>();
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			String url="jdbc:mysql://127.0.0.1:3306/kinhdoanh";
+			Connection con=DriverManager.getConnection(url,"root","");
+			Statement stmt =con.createStatement();
+			String query=String.format("SELECT * FROM account");
+	        ResultSet res=stmt.executeQuery(query);
+
+	        while(res.next()){
+	        	Account account = new Account();
+	        	account.setUsername(res.getString("Username"));
+	        	account.setPassword(res.getString("Password"));
+	        	account.setName(res.getString("Name"));
+	        	account.setEmail(res.getString("Email"));
+	        	account.setRoles(res.getInt("Role"));
+	            
+	            list.add(account);
+	        }
+	    
+	        res.close();
+            stmt.close();
+            return list;
+		} catch(Exception e) {
+			return null;
+		}
+	}
 }

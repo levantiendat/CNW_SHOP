@@ -7,7 +7,8 @@
 					<html>
 
 					<head>
-						<meta charset="utf-8">
+						<meta charset = "utf-8">
+						<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 						<meta name="viewport" content="width=device-width, initial-scale=1.0">
 						<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 							rel="stylesheet">
@@ -20,6 +21,13 @@
 					</head>
 
 					<body>
+					<%
+						session = request.getSession();
+						int roles = (int) session.getAttribute("roles");
+						if(roles!=0 && roles!=1){
+							response.sendRedirect("PersonalServlet?logout=1");
+						}
+					%>
 						<div class="container-fluid">
 							<div class="wrapper w-100 overflow-hidden">
 								<nav class="navbar navbar-expand-lg bg-dark navbar-dark d-flex justify-content-center"
@@ -29,6 +37,11 @@
 										<li class="nav-item">
 											<a class="nav-link" href="PersonalServlet?method=show">Cá nhân</a>
 										</li>
+										<%if(roles == 1) {%>
+											<li class="nav-item">
+											<a class="nav-link" href="PersonalServlet?all=1">Quản lý User</a>
+											</li>
+										<%} %>
 										<li class="nav-item">
 											<a class="nav-link" href="CategoryServlet">Danh mục</a>
 										</li>
@@ -43,7 +56,7 @@
 												hàng</a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="">Đăng xuất</a>
+											<a class="nav-link" href="PersonalServlet?logout=1">Đăng xuất</a>
 										</li>
 									</ul>
 								</nav>
@@ -54,7 +67,7 @@
 										<h1 class="text-center mb-5 mt-5 text-light">Personal detail</h1>
 										<div style="width: 80%; margin-top:20px;">
 											<% Account acc=(Account)request.getAttribute("account"); %>
-												<form action="PersonalServlet"
+												<form action="PersonalServlet" accept-charset="UTF-8"
 													class="LoginForm d-flex justify-content-center align-items-center flex-column"
 													style="font-size: 20px;" method="post">
 													<div

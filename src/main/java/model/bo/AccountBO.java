@@ -30,4 +30,8 @@ public class AccountBO {
 		AccountDAO dao = new AccountDAO();
 		return dao.UpdateAccount(username, name, gmail);
 	}
+	public ArrayList<Account> getAllUser(){
+		AccountDAO dao = new AccountDAO();
+		return dao.getAllUser();
+	}
 }

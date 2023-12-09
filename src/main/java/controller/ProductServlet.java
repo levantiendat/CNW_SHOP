@@ -33,6 +33,8 @@ public class ProductServlet extends HttpServlet {
 		String category = request.getParameter("category");
 		String method = request.getParameter("method");
 		String submit = request.getParameter("submit");
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
 
 		if((category != null && !category.isEmpty()) && !"all".equals(category) && method == null && submit == null) {
 			ProductBO bo = new ProductBO();

@@ -102,6 +102,31 @@ public class HistoryDAO {
 			return null;
 		}
 	}
+	public ArrayList<History> getAllList(){
+		try {
+			ArrayList<History> list = new ArrayList<History>();
+			Class.forName("com.mysql.jdbc.Driver");
+			String url="jdbc:mysql://127.0.0.1:3306/kinhdoanh";
+			Connection con=DriverManager.getConnection(url,"root","");
+			Statement stmt =con.createStatement();
+			String query=String.format("SELECT * FROM history");
+	        ResultSet res=stmt.executeQuery(query);
+	        while(res.next()) {
+	        	History history = new History();
+	        	history.setID(res.getInt("ID"));
+	        	history.setUsername(res.getString("Username"));
+	        	history.setDateOfBill(res.getDate("Date"));
+	        	history.setBill(res.getInt("Bill"));
+	        	list.add(history);
+	        }
+	        res.close();
+	        stmt.close();
+	        return list;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	public ArrayList<HistoryDetail> getHistoryDetail(int ID){
 		try {
 			ArrayList<HistoryDetail> list = new ArrayList<HistoryDetail>();

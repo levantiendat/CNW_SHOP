@@ -23,4 +23,8 @@ public class HistoryBO {
 		HistoryDAO dao = new HistoryDAO();
 		return dao.DeleteHistoryDetailByIDProduct(IDProduct);
 	}
+	public ArrayList<History> getAllList(){
+		HistoryDAO dao = new HistoryDAO();
+		return dao.getAllList();
+	}
 }

@@ -8,7 +8,7 @@
                         <html>
 
                         <head>
-                            <meta charset="utf-8">
+                            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                             <meta name="viewport" content="width=device-width, initial-scale=1.0">
                             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
                                 rel="stylesheet">
@@ -20,6 +20,13 @@
                         </head>
 
                         <body>
+                        <%
+							session = request.getSession();
+							int roles = (int) session.getAttribute("roles");
+							if(roles!=0 && roles!=1){
+								response.sendRedirect("PersonalServlet?logout=1");
+							}
+						%>
                             <div class="container">
                                 <div class="wrapper">
                                     <div class="row mt-3">
@@ -32,7 +39,7 @@
                                                     String message = (String)request.getAttribute("message");
                                                     if(message == null) message = "";
                                                     %>
-                                                    <form action="ProductServlet" method="post" class="UpdateProduct">
+                                                    <form action="ProductServlet" method="post" class="UpdateProduct" accept-charset="UTF-8">
                                                         <div class="FormGroup mb-3">
                                                             <label for="Category" class="form-label"
                                                                 style="font-weight:bold">Category

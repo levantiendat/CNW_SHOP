@@ -4,7 +4,7 @@
 		<html>
 
 		<head>
-			<meta charset="utf-8">
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -14,6 +14,13 @@
 		</head>
 
 		<body>
+			<%
+				session = request.getSession();
+				int roles = (int) session.getAttribute("roles");
+				if(roles!=0 && roles!=1){
+					response.sendRedirect("PersonalServlet?logout=1");
+				}
+			%>
 			<div class="container-fluid">
 				<div class="wrapper w-100">
 					<nav class="navbar navbar-expand-lg bg-dark navbar-dark d-flex justify-content-center"

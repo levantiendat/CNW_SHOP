@@ -8,7 +8,7 @@
                         <html>
 
                         <head>
-                            <meta charset="utf-8">
+                            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                             <meta name="viewport" content="width=device-width, initial-scale=1.0">
                             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
                                 rel="stylesheet">
@@ -20,18 +20,25 @@
                         </head>
 
                         <body>
+                        <%
+							session = request.getSession();
+							int roles = (int) session.getAttribute("roles");
+							if(roles!=0 && roles!=1){
+								response.sendRedirect("PersonalServlet?logout=1");
+							}
+						%>
                             <div class="container">
                                 <div class="wrapper">
                                     <div class="row mt-3">
                                         <div class="col col-sm-3"></div>
                                         <div class="col col-sm-6 bg-light rounded-4" style="padding: 30px 60px;">
-                                            <h1 class="text-center mb-5 mt-1">Update Product</h1>
+                                            <h1 class="text-center mb-5 mt-1">Add new Product</h1>
                                             <% ArrayList<Category> cglist = (ArrayList<Category>
                                                     )request.getAttribute("CategoryList");
                                                     String message = (String)request.getAttribute("message");
                                                     if(message == null) message = "";
                                                     %>
-                                                    <form action="ProductServlet" method="post" class="AddProduct">
+                                                    <form action="ProductServlet" method="post" class="AddProduct" accept-charset="UTF-8">
                                                         <div class="FormGroup mb-3">
                                                             <label for="Category" class="form-label"
                                                                 style="font-weight:bold">Category

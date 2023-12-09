@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,6 +35,10 @@ public class PersonalServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String method = request.getParameter("method");
 		String submit = request.getParameter("Submit");
+		String logout = request.getParameter("logout");
+		String isGetAll = request.getParameter("all");
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
 		AccountBO bo = new AccountBO();
 		if("show".equals(method)){
 			HttpSession session = request.getSession();
@@ -54,6 +59,19 @@ public class PersonalServlet extends HttpServlet {
 			Account acc = bo.GetAccountByUserName(username);
 			request.setAttribute("account", acc);
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/Personal.jsp?method=SuaThongTin");
+			rd.forward(request, response);
+		}
+		if("1".equals(logout)) {
+			HttpSession session = request.getSession();
+			session.invalidate();
+			response.sendRedirect("login.jsp");
+		}
+		if("1".equals(isGetAll)) {
+			ArrayList<Account> list = new ArrayList<Account>();
+			list = bo.getAllUser();
+			request.setAttribute("list", list);
+			String destination = "/admin_listUser.jsp";
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
 			rd.forward(request, response);
 		}
 	}

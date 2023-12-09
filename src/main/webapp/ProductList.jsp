@@ -15,6 +15,13 @@
 			</head>
 
 			<body>
+			<%
+				session = request.getSession();
+				int roles = (int) session.getAttribute("roles");
+				if(roles!=0 && roles!=1){
+					response.sendRedirect("PersonalServlet?logout=1");
+				}
+			%>
 				<div class="container-fluid">
 					<div class="wrapper w-100">
 						<nav class="navbar navbar-expand-lg bg-dark navbar-dark d-flex justify-content-center"
@@ -24,6 +31,11 @@
 								<li class="nav-item">
 									<a class="nav-link" href="PersonalServlet?method=show">Cá nhân</a>
 								</li>
+								<%if(roles == 1) {%>
+									<li class="nav-item">
+									<a class="nav-link" href="PersonalServlet?all=1">Quản lý User</a>
+									</li>
+								<%} %>
 								<li class="nav-item">
 									<a class="nav-link" href="CategoryServlet">Danh mục</a>
 								</li>
@@ -38,15 +50,17 @@
 										hàng</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="">Đăng xuất</a>
+									<a class="nav-link" href="PersonalServlet?logout=1">Đăng xuất</a>
 								</li>
 							</ul>
 						</nav>
 
 						<div class="content w-100 bg-secondary p-5 vh-100" style="overflow-y:auto;">
+						<%if(roles == 1){ %>
 							<div class="d-flex justify-content-start">
 								<a class="btn btn-primary" href="ProductServlet?method=add">Thêm</a>
 							</div>
+						<%} %>
 							<table class="table table-dark table-striped w-100 mt-2">
 								<tr>
 									<th>Mã mặt hàng</th>
@@ -56,8 +70,10 @@
 									<th>Mức giảm giá</th>
 									<th>Sau khi giảm</th>
 									<th></th>
+									<%if(roles == 1){ %>
 									<th></th>
 									<th></th>
+									<%} %>
 								</tr>
 
 
@@ -88,6 +104,7 @@
 													<a class="btn btn-primary" href="CartServlet?add=1&ID=<%=list.get(i).getID() %>">Thêm
 														vào giỏ hàng</a>
 												</td>
+												<%if(roles == 1) {%>
 												<td>
 													<a class="btn btn-primary"
 														href="ProductServlet?method=update&ID=<%=list.get(i).getID() %>">Sửa</a>
@@ -97,6 +114,7 @@
 													<a class="btn btn-primary"
 														href="ProductServlet?method=del&ID=<%=list.get(i).getID() %>">Xóa</a>
 												</td>
+												<%} %>
 											</tr>
 											<%} %>
 							</table>
@@ -109,4 +127,4 @@
 						</script>
 			</body>
 
-			</html>
+</html>

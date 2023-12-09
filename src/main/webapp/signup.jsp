@@ -1,9 +1,9 @@
-<%@ page pageEncoding="utf-8"%>
+<%@ page pageEncoding="utf-8"  contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -19,7 +19,7 @@
                 <div class="col col-sm-3"></div>
                 <div class="col col-sm-6 bg-light rounded-4" style="padding: 30px 60px;">
                     <h1 class="text-center mb-5 mt-1">Create your account</h1>
-                    <form name="signup" method = 'post' action='SignupServlet'>
+                    <form name="signup" method = 'post' action='SignupServlet' accept-charset="UTF-8">
                         <div class="FormGroup mb-3">
                             <label for="Email" class="form-label" style="font-weight:bold">Email
                             </label>

@@ -155,4 +155,20 @@ public class CartDAO {
 			
 		}
 	}
+	public void DeleteCart(String ProductID) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			String url="jdbc:mysql://127.0.0.1:3306/kinhdoanh";
+			Connection con=DriverManager.getConnection(url,"root","");
+			Statement stmt =con.createStatement();
+			
+			String query=String.format("DELETE FROM cart WHERE ID_Product = '%s'", ProductID);
+		    stmt.executeUpdate(query);
+            stmt.close();
+
+		} catch(Exception e) {
+			e.printStackTrace();
+			
+		}
+	}
 }
