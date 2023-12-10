@@ -144,7 +144,7 @@ public class AccountDAO {
 			int res = stmt.executeUpdate(query);
 			stmt.close();
 			con.close();
-			return false;
+			return true;
 		} catch(Exception e) {
 			System.out.print(e.getLocalizedMessage());
 			return false;

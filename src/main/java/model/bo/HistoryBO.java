@@ -27,4 +27,12 @@ public class HistoryBO {
 		HistoryDAO dao = new HistoryDAO();
 		return dao.getAllList();
 	}
+	public boolean DeleteHistoryDetailByIDHistory (int IDHistory) {
+		HistoryDAO dao = new HistoryDAO();
+		return dao.DeleteHistoryDetailByIDHistory(IDHistory);
+	}
+	public boolean DeleteHistoryUsername (String Username) {
+		HistoryDAO dao = new HistoryDAO();
+		return dao.DeleteHistoryUsername(Username);
+	}
 }
