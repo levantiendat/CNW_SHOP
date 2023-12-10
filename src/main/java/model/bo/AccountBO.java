@@ -34,4 +34,12 @@ public class AccountBO {
 		AccountDAO dao = new AccountDAO();
 		return dao.getAllUser();
 	}
+	public ArrayList<Account> SearchUserByUserName(String username){
+		AccountDAO dao = new AccountDAO();
+		return dao.SearchUserByUserName(username);
+	}
+	public ArrayList<Account> SearchUserByName(String name){
+		AccountDAO dao = new AccountDAO();
+		return dao.SearchUserByName(name);
+	}
 }

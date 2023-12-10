@@ -30,30 +30,28 @@ public class ProductServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
 		String category = request.getParameter("category");
 		String method = request.getParameter("method");
 		String submit = request.getParameter("submit");
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
-
 		if((category != null && !category.isEmpty()) && !"all".equals(category) && method == null && submit == null) {
 			ProductBO bo = new ProductBO();
 			ArrayList<Product> list = new ArrayList<Product>();
 			list = bo.getProductByCategory(category);
-			if(list !=null) {
+			if(list != null) {
 				request.setAttribute("list", list);
 				String destination = "/ProductList.jsp";
 				RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
 				rd.forward(request, response);
 				return;
 			}
-			
 		} 
 		else if("all".equals(category) || category == null && method == null && submit == null){
 			ProductBO bo = new ProductBO();
 			ArrayList<Product> list = new ArrayList<Product>();
 			list = bo.getAllProduct();
-			if(list !=null) {
+		if(list !=null) {
 				request.setAttribute("list", list);
 				String destination = "/ProductList.jsp";
 				RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
@@ -118,7 +116,7 @@ public class ProductServlet extends HttpServlet {
 				}
 			}
 			catch(Exception ex) {
-				System.out.print("Update Product failed, error: " + ex.getLocalizedMessage()); 
+			System.out.print("Update Product failed, error: " + ex.getLocalizedMessage()); 
 			}
 			
 		} 
@@ -258,8 +256,40 @@ public class ProductServlet extends HttpServlet {
 					return;
 				}
 			}
-			
-			
+		}
+		else if("FindProductByName".equals(method) && category == null && submit == null) {
+			ProductBO Probo = new ProductBO();
+			try {
+				String name = request.getParameter("Value");
+				ArrayList<Product> list = Probo.SearchProductByName(name);
+				if(list != null) {
+					request.setAttribute("list", list);
+					String destination = "/ProductList.jsp";
+					RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
+					rd.forward(request, response);
+					return;
+				}
+			}
+			catch (Exception e) {
+				System.out.print("FindProductByName failed, error: " + e.getLocalizedMessage());
+			}
+		}
+		else if("FindProductByPrice".equals(method) && category == null && submit == null) {
+			ProductBO Probo = new ProductBO();
+			try {
+				int Price = Integer.parseInt(request.getParameter("Value"));
+				ArrayList<Product> list = Probo.SearchProductByPrice(Price);
+				if(list != null) {
+					request.setAttribute("list", list);
+					String destination = "/ProductList.jsp";
+					RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
+					rd.forward(request, response);
+					return;
+				}
+			}
+			catch (Exception e) {
+				System.out.print("FindProductByPrice failed, error: " + e.getLocalizedMessage());
+			}
 		}
 	}
 

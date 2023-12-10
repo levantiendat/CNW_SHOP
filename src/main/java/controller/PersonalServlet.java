@@ -74,6 +74,22 @@ public class PersonalServlet extends HttpServlet {
 			RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
 			rd.forward(request, response);
 		}
+		if("FindUserByUsername".equals(method)) {
+			String username = request.getParameter("Value");
+			ArrayList<Account> list = bo.SearchUserByUserName(username);
+			request.setAttribute("list", list);
+			String destination = "/admin_listUser.jsp";
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
+			rd.forward(request, response);
+		}
+		if("FindUserByName".equals(method)) {
+			String name = request.getParameter("Value");
+			ArrayList<Account> list = bo.SearchUserByName(name);
+			request.setAttribute("list", list);
+			String destination = "/admin_listUser.jsp";
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
+			rd.forward(request, response);
+		}
 	}
 
 	/**

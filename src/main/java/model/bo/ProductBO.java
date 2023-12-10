@@ -34,4 +34,12 @@ public class ProductBO {
 		ProductDAO dao = new ProductDAO();
 		return dao.DeleteProduct(ID);
 	}
+	public ArrayList<Product> SearchProductByName(String Name){
+		ProductDAO dao = new ProductDAO();
+		return dao.SearchProductByName(Name);
+	}
+	public ArrayList<Product> SearchProductByPrice(int Price){
+		ProductDAO dao = new ProductDAO();
+		return dao.SearchProductByPrice(Price);
+	}
 }
