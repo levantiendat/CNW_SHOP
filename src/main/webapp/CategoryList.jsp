@@ -85,7 +85,7 @@
 												</ul>
 											</li>
 										</ul>
-										<form class="d-flex" role="search" method="post" action="CartServlet"
+										<form class="d-flex" role="search" method="post" action="ProductServlet"
 											id="FindForm">
 											<input class="form-control me-2 w-auto" type="search" placeholder="Search"
 												name="Value" aria-label="Search">
