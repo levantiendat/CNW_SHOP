@@ -90,6 +90,22 @@ public class PersonalServlet extends HttpServlet {
 			RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
 			rd.forward(request, response);
 		}
+		if("add".equals(method)) {
+			String destination = "/form_addUser.jsp";
+			ArrayList<String> list = bo.GetAllUsername();
+			request.setAttribute("UsernameList", list);
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
+			rd.forward(request, response);
+		}
+		if("AddAccount".equals(submit)) {
+			request.setCharacterEncoding("UTF-8");
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			response.setContentType("text/html;charset=UTF-8");
+			String name = request.getParameter("name");
+			String email = request.getParameter("email");
+			System.out.println("name: " + name + ", username: " + username);
+		}
 	}
 
 	/**
