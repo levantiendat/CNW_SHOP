@@ -161,4 +161,56 @@ public class ProductDAO {
 			return null;
 		}
 	}
+	public ArrayList<Product> SearchProductByName(String Name){
+		try {
+			ArrayList<Product> list = new ArrayList<Product>();
+			Class.forName("com.mysql.jdbc.Driver");
+			String url="jdbc:mysql://127.0.0.1:3306/kinhdoanh";
+			Connection con=DriverManager.getConnection(url,"root","");
+			Statement stmt =con.createStatement();
+			String query = String.format("SELECT * FROM product WHERE Name LIKE '%%%s%%'", Name);
+	        ResultSet res=stmt.executeQuery(query);
+	        
+	        while(res.next()){
+	        	Product product = new Product();
+	        	product.setID(res.getString("ID"));
+	        	product.setID_Category(res.getString("ID_Category"));
+	        	product.setName(res.getString("Name"));
+	        	product.setPrice(res.getInt("Price"));
+	        	product.setPromotion(res.getInt("Promotion"));
+	        	list.add(product);
+	        }
+	        res.close();
+            stmt.close();
+			return list;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	public ArrayList<Product> SearchProductByPrice(int Price){
+		try {
+			ArrayList<Product> list = new ArrayList<Product>();
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			String url="jdbc:mysql://127.0.0.1:3306/kinhdoanh";
+			Connection con=DriverManager.getConnection(url,"root","");
+			Statement stmt =con.createStatement();
+			String query=String.format("SELECT * FROM product where Price = '%d'", Price);
+	        ResultSet res=stmt.executeQuery(query);
+	        while(res.next()){
+	        	Product product = new Product();
+	        	product.setID(res.getString("ID"));
+	        	product.setID_Category(res.getString("ID_Category"));
+	        	product.setName(res.getString("Name"));
+	        	product.setPrice(res.getInt("Price"));
+	        	product.setPromotion(res.getInt("Promotion"));
+	        	list.add(product);
+	        }
+	        res.close();
+            stmt.close();
+			return list;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

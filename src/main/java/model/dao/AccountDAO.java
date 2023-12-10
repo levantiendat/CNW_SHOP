@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import com.mysql.fabric.xmlrpc.base.Array;
 
 import model.bean.Account;
+import model.bean.Product;
 
 public class AccountDAO {
 	public Connection GetCon() {
@@ -127,9 +128,22 @@ public class AccountDAO {
 			int res = stmt.executeUpdate(query);
 			stmt.close();
 			con.close();
-			if(res > 0) {
-				return true;
-			}
+			return false;
+		} catch(Exception e) {
+			System.out.print(e.getLocalizedMessage());
+			return false;
+		}
+	}
+	public boolean DeleteAccount(String username) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			String url="jdbc:mysql://127.0.0.1:3306/kinhdoanh";
+			Connection con=DriverManager.getConnection(url,"root","");
+			Statement stmt =con.createStatement();
+			String query = String.format("Delete from account where Username = '%s'", username);
+			int res = stmt.executeUpdate(query);
+			stmt.close();
+			con.close();
 			return false;
 		} catch(Exception e) {
 			System.out.print(e.getLocalizedMessage());
@@ -193,6 +207,56 @@ public class AccountDAO {
             stmt.close();
             return list;
 		} catch(Exception e) {
+			return null;
+		}
+	}
+	public ArrayList<Account> SearchUserByUserName(String username){
+		try {
+			ArrayList<Account> list = new ArrayList<Account>();
+			Class.forName("com.mysql.jdbc.Driver");
+			String url="jdbc:mysql://127.0.0.1:3306/kinhdoanh";
+			Connection con=DriverManager.getConnection(url,"root","");
+			Statement stmt =con.createStatement();
+			String query=String.format("SELECT * FROM account where username Like '%%%s%%'", username);
+	        ResultSet res=stmt.executeQuery(query);
+	        while(res.next()){
+	        	Account account = new Account();
+	        	account.setUsername(res.getString("Username"));
+	        	account.setPassword(res.getString("Password"));
+	        	account.setName(res.getString("Name"));
+	        	account.setEmail(res.getString("Email"));
+	        	account.setRoles(res.getInt("Role"));
+	            list.add(account);
+	        }
+	        res.close();
+            stmt.close();
+			return list;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	public ArrayList<Account> SearchUserByName(String name){
+		try {
+			ArrayList<Account> list = new ArrayList<Account>();
+			Class.forName("com.mysql.jdbc.Driver");
+			String url="jdbc:mysql://127.0.0.1:3306/kinhdoanh";
+			Connection con=DriverManager.getConnection(url,"root","");
+			Statement stmt =con.createStatement();
+			String query=String.format("SELECT * FROM account where name Like '%%%s%%'", name);
+	        ResultSet res=stmt.executeQuery(query);
+	        while(res.next()){
+	        	Account account = new Account();
+	        	account.setUsername(res.getString("Username"));
+	        	account.setPassword(res.getString("Password"));
+	        	account.setName(res.getString("Name"));
+	        	account.setEmail(res.getString("Email"));
+	        	account.setRoles(res.getInt("Role"));
+	            list.add(account);
+	        }
+	        res.close();
+            stmt.close();
+			return list;
+		} catch (Exception e) {
 			return null;
 		}
 	}
