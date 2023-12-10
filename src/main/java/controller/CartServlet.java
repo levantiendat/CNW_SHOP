@@ -40,8 +40,7 @@ public class CartServlet extends HttpServlet {
 			
 			Boolean result = bo.addToCart(user, ID);
 			response.sendRedirect(referer);
-		}
-		if((isShow != null && !isShow.isEmpty()) && "1".equals(isShow)) {
+		} else if((isShow != null && !isShow.isEmpty()) && "1".equals(isShow)) {
 			
 			CartBO bo = new CartBO();
 			ArrayList<Cart> list = new ArrayList<>();
@@ -57,8 +56,7 @@ public class CartServlet extends HttpServlet {
 			}
 			
 			
-		}
-		if((isUpdate != null && !isUpdate.isEmpty())) {
+		} else if((isUpdate != null && !isUpdate.isEmpty())) {
 			if("0".equals(isUpdate)) {
 				String ProductID = request.getParameter("ProductID");
 				Cart cart = new Cart();
@@ -68,24 +66,26 @@ public class CartServlet extends HttpServlet {
 				String destination = "/form_updateCart.jsp";
 				RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
 				rd.forward(request, response);
-			} else {
+			} else if("1".equals(isUpdate)){
 				//Lấy thông tin từ form xử lý
-				try {
-					String ProductID = request.getParameter("ID_Product");
-					int number = Integer.parseInt( request.getParameter("Product_num"));
-					CartBO bo = new CartBO();
-					bo.UpdateCart(user, ProductID, number);
-					String destination = "/CartServlet?show=1";
-					RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
-					rd.forward(request, response);
-				} catch(Exception e) {
-					response.sendRedirect(referer);
-					e.printStackTrace();
-				}	
 				
+				String ProductID = request.getParameter("ID_Product");
+				int number = Integer.parseInt(request.getParameter("Product_num"));
+				CartBO bo = new CartBO();
+				bo.UpdateCart(user, ProductID, number);
+
+				// Assuming the update operation doesn't involve any response output
+
+				String destination = "/CartServlet?show=1";
+				RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
+				rd.forward(request, response);
+
+					
+				
+			} else {
+				response.sendRedirect(referer);
 			}
-		}
-		if((isDelete != null && !isDelete.isEmpty()) && "1".equals(isDelete)) {
+		} else if((isDelete != null && !isDelete.isEmpty()) && "1".equals(isDelete)) {
 			
 			String ProductID = request.getParameter("ProductID");
 			
