@@ -33,12 +33,12 @@ public class PersonalServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
 		String method = request.getParameter("method");
 		String submit = request.getParameter("Submit");
 		String logout = request.getParameter("logout");
 		String isGetAll = request.getParameter("all");
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
 		AccountBO bo = new AccountBO();
 		if("show".equals(method)){
 			HttpSession session = request.getSession();
