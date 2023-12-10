@@ -24,22 +24,24 @@
 								<div class="col col-sm-3"></div>
 								<div class="col col-sm-6 bg-light rounded-4" style="padding: 30px 60px;">
 									<h1 class="text-center mb-5 mt-1">Add new account</h1>
-									<% ArrayList<String> list = (ArrayList<String>)request.getAttribute("UsernameList");
-											%>
+									<% 
+										ArrayList<String> list = (ArrayList<String>)request.getAttribute("UsernameList");
+										Account acc = (Account)request.getAttribute("account");	
+									%>
 											<form method='post' action='PersonalServlet' accept-charset="UTF-8"
-												id="Add_New_Account_Form">
+												id="Update_Account_Form">
 												<div class="FormGroup mb-3">
 													<label for="Email" class="form-label" style="font-weight:bold">Email
 													</label>
 													<input type="email" class="form-control" id="Email" name="email"
-														value="" aria-describedby="emailHelp" required>
+														value="<%=acc.getEmail() %>" aria-describedby="emailHelp" required>
 													<div id="emailHelp" class="form-text"></div>
 												</div>
 												<div class="FormGroup mb-3">
 													<label for="Username" class="form-label"
 														style="font-weight:bold">Username</label>
 													<input type="text" class="form-control" id="Username"
-														name="username" value="" aria-describedby="usernameHelp"
+														name="username" value="<%=acc.getUsername() %>" aria-describedby="usernameHelp"
 														required>
 													<div id="usernameHelp" class="form-text"></div>
 												</div>
@@ -47,7 +49,7 @@
 													<label for="password" class="form-label"
 														style="font-weight:bold">Password</label>
 													<input type="password" class="form-control" id="password"
-														name="password" value="" aria-describedby="passwordHelp"
+														name="password" value="<%=acc.getPassword() %>" aria-describedby="passwordHelp"
 														required>
 													<div id="passwordHelp" class="form-text"></div>
 												</div>
@@ -55,12 +57,12 @@
 													<label for="Name" class="form-label"
 														style="font-weight:bold">Name</label>
 													<input type="text" class="form-control" id="Name" name="name"
-														value="" aria-describedby="NameHelp" required>
+														value="<%=acc.getName() %>" aria-describedby="NameHelp" required>
 													<div id="NameHelp" class="form-text"></div>
 												</div>
 												<div class="FormGroup w-100">
-													<button type="submit" name="Submit" value='AddAccount'
-														class="btn btn-primary w-100">Create account</button>
+													<button type="submit" name="Submit" value='UpdateAccount'
+														class="btn btn-primary w-100">Update account</button>
 												</div>
 											</form>
 								</div>
@@ -71,16 +73,4 @@
 						</div>
 					</div>
 				</body>
-				<script>
-					var list = "<%=list%>";
-					var form = document.getElementById("Add_New_Account_Form");
-					form.addEventListener("submit", function (event) {
-						var username = document.getElementById("Username").value;
-						if (list.includes(username)) {
-							alert("Username already exists!");
-							event.preventDefault();
-						}
-					});
-				</script>
-
 				</html>

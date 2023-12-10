@@ -104,8 +104,50 @@ public class PersonalServlet extends HttpServlet {
 			response.setContentType("text/html;charset=UTF-8");
 			String name = request.getParameter("name");
 			String email = request.getParameter("email");
-			System.out.println("name: " + name + ", username: " + username);
+			Account account = new Account(username, password, name, email, 0);
+			Boolean res = bo.SignupAccount(account);
+			ArrayList<Account> list = bo.getAllUser();
+			request.setAttribute("list", list);
+			String destination = "/admin_listUser.jsp";
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
+			rd.forward(request, response);
 		}
+		if("update".equals(method)) {
+			String ID = request.getParameter("ID");
+			Account acc = bo.GetAccountByUserName(ID);
+			if(acc != null) {
+				String destination = "/form_updateUser.jsp";
+				ArrayList<String> list = bo.GetAllUsername();
+				request.setAttribute("UsernameList", list);
+				request.setAttribute("account", acc);
+				RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
+				rd.forward(request, response);
+			}
+		}
+		if("UpdateAccount".equals(submit)) {
+			request.setCharacterEncoding("UTF-8");
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			response.setContentType("text/html;charset=UTF-8");
+			String name = request.getParameter("name");
+			String email = request.getParameter("email");
+			Boolean res = bo.UpdateAccount(username, name, email);
+			ArrayList<Account> list = bo.getAllUser();
+			request.setAttribute("list", list);
+			String destination = "/admin_listUser.jsp";
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
+			rd.forward(request, response);
+		}
+		if("del".equals(method)) {
+			String ID = request.getParameter("ID");
+			Boolean res = bo.DeleteAccount(ID);
+			ArrayList<Account> list = bo.getAllUser();
+			request.setAttribute("list", list);
+			String destination = "/admin_listUser.jsp";
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
+			rd.forward(request, response);
+		}
+		
 	}
 
 	/**

@@ -42,4 +42,8 @@ public class AccountBO {
 		AccountDAO dao = new AccountDAO();
 		return dao.SearchUserByName(name);
 	}
+	public boolean DeleteAccount(String username) {
+		AccountDAO dao = new AccountDAO();
+		return dao.DeleteAccount(username);
+	}
 }

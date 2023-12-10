@@ -128,9 +128,22 @@ public class AccountDAO {
 			int res = stmt.executeUpdate(query);
 			stmt.close();
 			con.close();
-			if(res > 0) {
-				return true;
-			}
+			return false;
+		} catch(Exception e) {
+			System.out.print(e.getLocalizedMessage());
+			return false;
+		}
+	}
+	public boolean DeleteAccount(String username) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			String url="jdbc:mysql://127.0.0.1:3306/kinhdoanh";
+			Connection con=DriverManager.getConnection(url,"root","");
+			Statement stmt =con.createStatement();
+			String query = String.format("Delete from account where Username = '%s'", username);
+			int res = stmt.executeUpdate(query);
+			stmt.close();
+			con.close();
 			return false;
 		} catch(Exception e) {
 			System.out.print(e.getLocalizedMessage());
