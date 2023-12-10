@@ -81,7 +81,7 @@
 										<form class="d-flex" role="search" method="post" action="ProductServlet"
 											id="FindForm">
 											<input class="form-control me-2 w-auto" type="search" placeholder="Search"
-												name="Value" aria-label="Search">
+												name="Value" aria-label="Search" id="SearchValue">
 											<input type="submit" class="btn btn-outline-success" name="method"
 												value="Search" id="SubmitFindProduct">
 										</form>
@@ -134,16 +134,20 @@
 							e.preventDefault();
 							FindProductHref.innerHTML = "Tìm kiếm theo giá thành";
 						});
-						FindUserByUsername.addEventListener("click", (e) => {
-							e.preventDefault();
-							FindProductHref.innerHTML = "Tìm kiếm theo username";
-						});
-						FindUserByName.addEventListener("click", (e) => {
-							e.preventDefault();
-							FindProductHref.innerHTML = "Tìm kiếm theo tên user";
-						});
+						if (FindUserByUsername != null) {
+							FindUserByUsername.addEventListener("click", (e) => {
+								e.preventDefault();
+								FindProductHref.innerHTML = "Tìm kiếm theo username";
+							});
+						}
+						if (FindUserByName != null) {
+							FindUserByName.addEventListener("click", (e) => {
+								e.preventDefault();
+								FindProductHref.innerHTML = "Tìm kiếm theo tên user";
+							});
+						}
 						SubmitFindProduct.addEventListener("click", (e) => {
-							const Search = document.querySelector(".form-control");
+							const Search = document.getElementById("SearchValue");
 							if (Search.value == "") {
 								alert("Bạn chưa nhập thông tin tìm kiếm");
 								e.preventDefault();
