@@ -154,6 +154,8 @@
 						const FindProductHref = document.querySelector(".FindProductHref");
 						const FindNameProduct = document.getElementById("FindNameProduct");
 						const FindPriceProduct = document.getElementById("FindPriceProduct");
+						const FindUserByUsername = document.getElementById("FindUserByUsername");
+						const FindUserByName = document.getElementById("FindUserByName");
 						const FindForm = document.getElementById("FindForm");
 						const SubmitFindProduct = document.getElementById("SubmitFindProduct");
 						FindNameProduct.addEventListener("click", (e) => {
@@ -186,6 +188,14 @@
 										e.preventDefault();
 									}
 									SubmitFindProduct.value = "FindProductByPrice";
+								}
+								else if (FindProductHref.textContent == "Tìm kiếm theo username") {
+									FindForm.setAttribute("action", "PersonalServlet");
+									SubmitFindProduct.value = "FindUserByUsername";
+								}
+								else if (FindProductHref.textContent == "Tìm kiếm theo tên user") {
+									FindForm.setAttribute("action", "PersonalServlet");
+									SubmitFindProduct.value = "FindUserByName";
 								}
 							}
 						});
