@@ -67,19 +67,6 @@
 													aria-expanded="false">Tìm kiếm</a>
 												<ul class="dropdown-menu dropdown-menu-dark"
 													aria-labelledby="navbarDropdown">
-													<li class="nav-item dropdown">
-														<button class="btn btn-dark dropdown-toggle"
-															data-bs-toggle="dropdown" aria-expanded="false">
-															Dropdown
-														</button>
-														<ul class="dropdown-menu dropdown-menu-dark">
-															<li><a class="dropdown-item" href="#">Action</a></li>
-															<li><a class="dropdown-item" href="#">Another action</a>
-															</li>
-															<li><a class="dropdown-item" href="#">Something else
-																	here</a></li>
-														</ul>
-													</li>
 													<li><a class="dropdown-item" href="#" id="FindNameProduct">Tên
 															sản
 															phẩm</a></li>
@@ -88,12 +75,14 @@
 													<%if(roles==1) {%>
 														<li class="nav-item">
 															<a class="dropdown-item" href="#"
-																id="FindUserName">Username</a>
+																id="FindUserByUsername">Username</a>
 														</li>
 														<li class="nav-item">
-															<a class="dropdown-item" href="#" id="Find">Tên user</a>
+															<a class="dropdown-item" href="#" id="FindUserByName">Tên
+																user</a>
 														</li>
 														<%} %>
+												</ul>
 											</li>
 										</ul>
 										<form class="d-flex" role="search" method="post" action="CartServlet"
@@ -165,6 +154,14 @@
 						FindPriceProduct.addEventListener("click", (e) => {
 							e.preventDefault();
 							FindProductHref.innerHTML = "Tìm kiếm theo giá thành";
+						});
+						FindUserByUsername.addEventListener("click", (e) => {
+							e.preventDefault();
+							FindProductHref.innerHTML = "Tìm kiếm theo username";
+						});
+						FindUserByName.addEventListener("click", (e) => {
+							e.preventDefault();
+							FindProductHref.innerHTML = "Tìm kiếm theo tên user";
 						});
 						SubmitFindProduct.addEventListener("click", (e) => {
 							const Search = document.querySelector(".form-control");

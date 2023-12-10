@@ -68,10 +68,11 @@
 													<%if(roles==1) {%>
 														<li class="nav-item">
 															<a class="dropdown-item" href="#"
-																id="FindUserName">Username</a>
+																id="FindUserByUsername">Username</a>
 														</li>
 														<li class="nav-item">
-															<a class="dropdown-item" href="#" id="Find">Tên user</a>
+															<a class="dropdown-item" href="#" id="FindUserByName">Tên
+																user</a>
 														</li>
 														<%} %>
 												</ul>
@@ -153,6 +154,14 @@
 							FindPriceProduct.addEventListener("click", (e) => {
 								e.preventDefault();
 								FindProductHref.innerHTML = "Tìm kiếm theo giá thành";
+							});
+							FindUserByUsername.addEventListener("click", (e) => {
+								e.preventDefault();
+								FindProductHref.innerHTML = "Tìm kiếm theo username";
+							});
+							FindUserByName.addEventListener("click", (e) => {
+								e.preventDefault();
+								FindProductHref.innerHTML = "Tìm kiếm theo tên user";
 							});
 							SubmitFindProduct.addEventListener("click", (e) => {
 								const Search = document.querySelector(".form-control");
