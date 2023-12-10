@@ -26,4 +26,8 @@ public class CartBO {
 		CartDAO dao = new CartDAO();
 		dao.DeleteCart(username, ProductID);
 	}
+	public boolean DeleteCartByUsername(String Username) {
+		CartDAO dao = new CartDAO();
+		return dao.DeleteCartByUsername(Username);
+	}
 }

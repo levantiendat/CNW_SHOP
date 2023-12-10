@@ -13,6 +13,10 @@ import javax.servlet.http.HttpSession;
 
 import model.bean.Account;
 import model.bo.AccountBO;
+import model.bean.History;
+import model.bo.HistoryBO;
+import model.bo.CartBO;
+import model.bean.Cart;
 /**
  * Servlet implementation class PersonalServlet
  */
@@ -139,13 +143,45 @@ public class PersonalServlet extends HttpServlet {
 			rd.forward(request, response);
 		}
 		if("del".equals(method)) {
-			String ID = request.getParameter("ID");
-			Boolean res = bo.DeleteAccount(ID);
-			ArrayList<Account> list = bo.getAllUser();
-			request.setAttribute("list", list);
-			String destination = "/admin_listUser.jsp";
-			RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
-			rd.forward(request, response);
+			try {
+				HistoryBO hisbo = new HistoryBO();
+				CartBO cartbo = new CartBO();
+				AccountBO accbo = new AccountBO();
+				String Username = request.getParameter("ID");
+				ArrayList<History> hisList = hisbo.getList(Username);
+				ArrayList<Integer> hisIDList = new ArrayList<Integer>();
+				for(int i = 0; i < hisList.size(); i++) {
+					hisIDList.add(hisList.get(i).getID());
+				}
+				//delete historyDetail
+				for(int i = 0; i < hisIDList.size(); i++) {
+					if(!hisbo.DeleteHistoryDetailByIDHistory(hisIDList.get(i)))
+							throw new Exception("DeleteHistoryDetailByHisID failed");
+				}
+				//delete History
+				if(!hisbo.DeleteHistoryUsername(Username))
+					throw new Exception("Delete HistoryByUserName failed");
+				//delete cart
+				if(!cartbo.DeleteCartByUsername(Username))
+					throw new Exception("Delete CartByUsername failed");
+				//delete account
+				if(!accbo.DeleteAccount(Username))
+					throw new Exception("Delete AccountByUsername failed"); 
+				ArrayList<Account> list = bo.getAllUser();
+				request.setAttribute("list", list);
+				String destination = "/admin_listUser.jsp";
+				RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
+				rd.forward(request, response);
+			}
+			catch (Exception e) {
+				System.out.println("Delete user failed, error: " + e.getLocalizedMessage());
+				ArrayList<Account> list = bo.getAllUser();
+				request.setAttribute("list", list);
+				String destination = "/admin_listUser.jsp";
+				RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
+				rd.forward(request, response);
+			}
+			
 		}
 		
 	}

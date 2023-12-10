@@ -171,4 +171,20 @@ public class CartDAO {
 			
 		}
 	}
+	public boolean DeleteCartByUsername(String Username) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			String url="jdbc:mysql://127.0.0.1:3306/kinhdoanh";
+			Connection con=DriverManager.getConnection(url,"root","");
+			Statement stmt =con.createStatement();
+			String query=String.format("DELETE FROM cart WHERE Username = '%s'", Username);
+		    stmt.executeUpdate(query);
+            stmt.close();
+            return true;
+
+		} catch(Exception e) {
+			System.out.println("DeleteCartByUsername failed, error: " + e.getLocalizedMessage());
+			return false;
+		}
+	}
 }
